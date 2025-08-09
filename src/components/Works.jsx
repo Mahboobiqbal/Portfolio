@@ -3,6 +3,10 @@ import react from "react";
 import project1 from "../assets/desktop-design.webp";
 import project2 from "../assets/Amazing-car-company.webp";
 import project3 from "../assets/Shawlser.webp";
+import worki1 from "../assets/proj1.jpg";
+import worki2 from "../assets/proj2.jpg";
+import worki3 from "../assets/proj3.jpg";
+import worki4 from "../assets/proj4.jpg";
 import project4 from "../assets/Superheroes.webp";
 import project5 from "../assets/mobile-design.webp";
 import project6 from "../assets/Music-player.webp";
@@ -30,6 +34,131 @@ function Works() {
       <div className="portfolio-area">
         <div className="row grid grid-cols-1 gap-4 laptop:grid-cols-2 mobile:grid-cols-1">
           <div className="work-items flex flex-col px-[10px]">
+            {/* New Worki Projects */}
+            <div
+              className={`item ${
+                isDarkMode
+                  ? "bg-[#1d1d1d] border-[1px] border-[#353535] "
+                  : "bg-[#fff4f4] "
+              } w-full mb-5 rounded-xl p-5`}
+            >
+              <a href="#" className="rounded-xl mb-4 overflow-hidden ">
+                <img
+                  src={worki4}
+                  alt="University FAQs Chatbot AI"
+                  width="310 px"
+                  height="310 px"
+                  className=" object-cover rounded-xl mb-4"
+                />
+              </a>
+              <span
+                className={`block text-xs capitalize font-normal ${
+                  isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
+                } font-sans`}
+              >
+                University FAQs, AI Chatbot
+              </span>
+              <h6
+                className={`text-base font-medium mb-0 capitalize font-sans ${
+                  isDarkMode ? "text-white " : "text-black "
+                } leading-normal mt-0`}
+              >
+                University FAQs Chatbot AI
+              </h6>
+            </div>
+            <div
+              className={`item ${
+                isDarkMode
+                  ? "bg-[#1d1d1d] border-[1px] border-[#353535] "
+                  : "bg-[#fff4f4] "
+              } w-full mb-5 rounded-xl p-5`}
+            >
+              <a href="#" className="rounded-xl mb-4 overflow-hidden ">
+                <img
+                  src={worki1}
+                  alt="School Accuracy System"
+                  width="310 px"
+                  height="310 px"
+                  className=" object-cover rounded-xl mb-4"
+                />
+              </a>
+              <span
+                className={`block text-xs capitalize font-normal ${
+                  isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
+                } font-sans`}
+              >
+                School Management, Accuracy System
+              </span>
+              <h6
+                className={`text-base font-medium mb-0 capitalize font-sans ${
+                  isDarkMode ? "text-white " : "text-black "
+                } leading-normal mt-0`}
+              >
+                School Accuracy System
+              </h6>
+            </div>
+            <div
+              className={`item ${
+                isDarkMode
+                  ? "bg-[#1d1d1d] border-[1px] border-[#353535] "
+                  : "bg-[#fff4f4] "
+              } w-full mb-5 rounded-xl p-5`}
+            >
+              <a href="#" className="rounded-xl mb-4 overflow-hidden ">
+                <img
+                  src={worki2}
+                  alt="Face Recognition"
+                  width="310 px"
+                  height="310 px"
+                  className=" object-cover rounded-xl mb-4"
+                />
+              </a>
+              <span
+                className={`block text-xs capitalize font-normal ${
+                  isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
+                } font-sans`}
+              >
+                AI, Face Recognition System
+              </span>
+              <h6
+                className={`text-base font-medium mb-0 capitalize font-sans ${
+                  isDarkMode ? "text-white " : "text-black "
+                } leading-normal mt-0`}
+              >
+                Face Recognition
+              </h6>
+            </div>
+            <div
+              className={`item ${
+                isDarkMode
+                  ? "bg-[#1d1d1d] border-[1px] border-[#353535] "
+                  : "bg-[#fff4f4] "
+              } w-full mb-5 rounded-xl p-5`}
+            >
+              <a href="#" className="rounded-xl mb-4 overflow-hidden ">
+                <img
+                  src={worki3}
+                  alt="E-commerce for Bakery"
+                  width="310 px"
+                  height="310 px"
+                  className=" object-cover rounded-xl mb-4"
+                />
+              </a>
+              <span
+                className={`block text-xs capitalize font-normal ${
+                  isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
+                } font-sans`}
+              >
+                E-commerce Website, Bakery
+              </span>
+              <h6
+                className={`text-base font-medium mb-0 capitalize font-sans ${
+                  isDarkMode ? "text-white " : "text-black "
+                } leading-normal mt-0`}
+              >
+                E-commerce for Bakery
+              </h6>
+            </div>
             <div
               className={`item ${
                 isDarkMode
@@ -92,7 +221,10 @@ function Works() {
                 Cars
               </h6>
             </div>
-            <div
+
+          </div>
+          <div className="work-items flex flex-col px-[10px]">
+             <div
               className={`item ${
                 isDarkMode
                   ? "bg-[#1d1d1d] border-[1px] border-[#353535] "
@@ -123,8 +255,6 @@ function Works() {
                 Payment
               </h6>
             </div>
-          </div>
-          <div className="work-items flex flex-col px-[10px]">
             <div
               className={`item ${
                 isDarkMode
@@ -218,7 +348,70 @@ function Works() {
                 Songs
               </h6>
             </div>
+            <div
+              className={`item ${
+                isDarkMode
+                  ? "bg-[#1d1d1d] border-[1px] border-[#353535] "
+                  : "bg-[#fff4f4] "
+              } w-full mb-5 rounded-xl p-5`}
+            >
+              <a href="#" className="rounded-xl mb-4 overflow-hidden ">
+                <img
+                  src={worki4}
+                  alt="University FAQs Chatbot AI"
+                  width="310 px"
+                  height="310 px"
+                  className=" object-cover rounded-xl mb-4"
+                />
+              </a>
+              <span
+                className={`block text-xs capitalize font-normal ${
+                  isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
+                } font-sans`}
+              >
+                University FAQs, AI Chatbot
+              </span>
+              <h6
+                className={`text-base font-medium mb-0 capitalize font-sans ${
+                  isDarkMode ? "text-white " : "text-black "
+                } leading-normal mt-0`}
+              >
+                University FAQs Chatbot AI
+              </h6>
+            </div>
+            <div
+              className={`item ${
+                isDarkMode
+                  ? "bg-[#1d1d1d] border-[1px] border-[#353535] "
+                  : "bg-[#fff4f4] "
+              } w-full mb-5 rounded-xl p-5`}
+            >
+              <a href="#" className="rounded-xl mb-4 overflow-hidden ">
+                <img
+                  src={worki1}
+                  alt="School Accuracy System"
+                  width="310 px"
+                  height="310 px"
+                  className=" object-cover rounded-xl mb-4"
+                />
+              </a>
+              <span
+                className={`block text-xs capitalize font-normal ${
+                  isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
+                } font-sans`}
+              >
+                School Management, Accuracy System
+              </span>
+              <h6
+                className={`text-base font-medium mb-0 capitalize font-sans ${
+                  isDarkMode ? "text-white " : "text-black "
+                } leading-normal mt-0`}
+              >
+                School Accuracy System
+              </h6>
+            </div>
           </div>
+          
         </div>
       </div>
     </div>

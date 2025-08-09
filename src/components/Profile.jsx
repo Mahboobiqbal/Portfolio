@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import react from "react";
-import img from "../assets/profile.jpg";
+import img from "../assets/Mehboob.jpg";
 import cv from "../assets/Resume.pdf";
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -43,7 +43,7 @@ function Profile() {
           }  rounded px-5 py-1 mb-4`}
           style={{ fontFamily: "poppins, sans-serif" }}
         >
-          Software Engineer
+          Developer | Designer | Freelancer
         </span>
         <ul className="Social-links flex items-center justify-between w-[260px] px-[7.5px] mb-[30px] mx-auto list-none">
           <li className="mx-1">
@@ -167,7 +167,7 @@ function Profile() {
                   isDarkMode ? "text-white " : "text-black "
                 } capitalize`}
               >
-                Mingora Swat
+                Islamabad, Pakistan
               </p>
             </div>
           </div>

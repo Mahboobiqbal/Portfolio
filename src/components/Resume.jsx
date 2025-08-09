@@ -51,7 +51,7 @@ function Resume() {
                   } font-normal `}
                   style={{ fontFamily: "Roboto, sans-serif" }}
                 >
-                  Sep 2020 – Present
+                  Sep 2020 – Dev 2024
                 </span>
                 <h3
                   className={` font-medium text-[18px] ${
@@ -83,7 +83,7 @@ function Resume() {
                   } font-normal `}
                   style={{ fontFamily: "Roboto, sans-serif" }}
                 >
-                  Aug 2018 – July 2020
+                  Aug 2017 – July 2019
                 </span>
                 <h3
                   className={` font-medium text-[18px] ${
@@ -99,7 +99,7 @@ function Resume() {
                   } font-normal `}
                   style={{ fontFamily: "Roboto, sans-serif" }}
                 >
-                  GCMHSS Wadudia Saidu Sharif Swat
+                  GOVT Degree College Mingora Swat
                 </p>
               </div>
             </div>
@@ -115,7 +115,7 @@ function Resume() {
                   } font-normal `}
                   style={{ fontFamily: "Roboto, sans-serif" }}
                 >
-                  2016-2018
+                  2015-2017
                 </span>
                 <h3
                   className={` font-medium text-[18px] ${
@@ -131,7 +131,7 @@ function Resume() {
                   } font-normal `}
                   style={{ fontFamily: "Roboto, sans-serif" }}
                 >
-                  GCMHSS Wadudia Saidu Sharif Swat
+                  Al-Azhar Educational Institute Swat
                 </p>
               </div>
             </div>
@@ -153,7 +153,7 @@ function Resume() {
             <div className="card-wraper">
               <div
                 className={`card mb-5 p-5 ${
-                  isDarkMode ? "bg-black " : "bg-[#eef5fa] "
+                  isDarkMode ? "bg-black " : "bg-[#fff4f4] "
                 }  rounded-xl`}
               >
                 <span
@@ -162,7 +162,7 @@ function Resume() {
                   } font-normal `}
                   style={{ fontFamily: "Roboto, sans-serif" }}
                 >
-                  2023-2024
+                  2025 - 2025
                 </span>
                 <h3
                   className={` font-medium text-[18px] ${
@@ -178,7 +178,39 @@ function Resume() {
                   } font-normal `}
                   style={{ fontFamily: "Roboto, sans-serif" }}
                 >
-                  ShawlsLer Inc.
+                  Dev Diligent. Islamabad
+                </p>
+              </div>
+            </div>
+            <div className="card-wraper">
+              <div
+                className={`card mb-5 p-5 ${
+                  isDarkMode ? "bg-black " : "bg-[#eef5fa] "
+                }  rounded-xl`}
+              >
+                <span
+                  className={`card-subtitle mb-2 text-sm ${
+                    isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
+                  } font-normal `}
+                  style={{ fontFamily: "Roboto, sans-serif" }}
+                >
+                  Nov 2024- March 2025
+                </span>
+                <h3
+                  className={` font-medium text-[18px] ${
+                    isDarkMode ? "text-white" : "text-black "
+                  } mb-1`}
+                  style={{ fontFamily: "poppins, sans-serif" }}
+                >
+                  Web Developer
+                </h3>
+                <p
+                  className={`card-subtitle  text-base ${
+                    isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
+                  } font-normal `}
+                  style={{ fontFamily: "Roboto, sans-serif" }}
+                >
+                  SoftoSol Pvt Ltd. Islamabad
                 </p>
               </div>
             </div>
@@ -240,7 +272,7 @@ function Resume() {
                   className="title"
                   style={{ fontFamily: "poppins, sans-serif" }}
                 >
-                  Web Design
+                  Web Development
                 </div>
                 <span style={{ fontFamily: "poppins, sans-serif" }}>85%</span>
               </div>
