@@ -154,7 +154,7 @@ function Hero() {
                 Open to Work
               </span>
               <span className="tech-tag">MERN Stack Dev</span>
-              <span className="tech-tag">UI/UX Designer</span>
+              <span className="tech-tag">Flutter App Dev</span>
             </motion.div>
 
             {/* Main Heading */}
