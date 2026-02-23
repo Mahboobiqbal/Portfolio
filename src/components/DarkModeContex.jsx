@@ -1,23 +1,19 @@
-// eslint-disable-next-line no-unused-vars
-import react, { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 
 const DarkModeContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 export const DarkModeProvider = ({ children }) => {
-  // Load dark mode preference from localStorage
   const [isDarkMode, setIsDarkMode] = useState(
-    localStorage.getItem("isDarkMode") === "true"
+    localStorage.getItem("isDarkMode") === "true",
   );
 
   const toggleDarkMode = () => {
     const newDarkMode = !isDarkMode;
     setIsDarkMode(newDarkMode);
-    // Save dark mode preference to localStorage
     localStorage.setItem("isDarkMode", newDarkMode.toString());
   };
 
-  // Sync dark mode preference with localStorage on component mount
   useEffect(() => {
     const storedDarkMode = localStorage.getItem("isDarkMode") === "true";
     if (storedDarkMode !== isDarkMode) {
@@ -25,6 +21,16 @@ export const DarkModeProvider = ({ children }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Apply dark-mode class to root element for CSS variable switching
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDarkMode) {
+      root.classList.add("dark-mode");
+    } else {
+      root.classList.remove("dark-mode");
+    }
+  }, [isDarkMode]);
 
   return (
     <DarkModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>

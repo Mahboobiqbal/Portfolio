@@ -1,428 +1,184 @@
-// eslint-disable-next-line no-unused-vars
-import react from "react";
+import React from "react";
 import { FaGraduationCap } from "react-icons/fa6";
 import { IoBriefcaseOutline } from "react-icons/io5";
-import { useDarkMode } from "./DarkModeContex";
+import { motion } from "framer-motion";
+
 function Resume() {
-  const { isDarkMode } = useDarkMode();
+  const education = [
+    {
+      period: "Sep 2020 – Dev 2024",
+      title: "BS: Software Engineering",
+      place: "University of Swat",
+    },
+    {
+      period: "Aug 2017 – July 2019",
+      title: "F.sc: Pre-Engineering",
+      place: "GOVT Degree College Mingora Swat",
+    },
+    {
+      period: "2015 – 2017",
+      title: "Matric: Science",
+      place: "Al-Azhar Educational Institute Swat",
+    },
+  ];
+
+  const experience = [
+    {
+      period: "2025 – 2025",
+      title: "Web Developer",
+      place: "Dev Diligent. Islamabad",
+    },
+    {
+      period: "Nov 2024 – March 2025",
+      title: "Web Developer",
+      place: "SoftoSol Pvt Ltd. Islamabad",
+    },
+    {
+      period: "Semester [2021]",
+      title: "Web Developer",
+      place: "Semester project (personal project)",
+    },
+  ];
+
+  const TimelineItem = ({ item, index, total }) => (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.12 }}
+      className="relative pl-10 pb-6 last:pb-0"
+    >
+      <div className="timeline-dot" />
+      {index < total - 1 && (
+        <div className="timeline-line" style={{ top: "22px" }} />
+      )}
+      <div className="glass-card p-5">
+        <span
+          className="inline-block text-xs font-mono font-medium px-3 py-1 rounded-md mb-2"
+          style={{ background: "var(--tag-bg)", color: "var(--tag-text)" }}
+        >
+          {item.period}
+        </span>
+        <h4
+          className="font-semibold text-base mb-1"
+          style={{ color: "var(--text-primary)" }}
+        >
+          {item.title}
+        </h4>
+        <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
+          {item.place}
+        </p>
+      </div>
+    </motion.div>
+  );
 
   return (
-    <div
-      className={`resume-area ${
-        isDarkMode ? "bg-black " : "bg-white "
-      } rounded-[20px] px-5 laptop:px-[60px] pt-[60px]  pb-4`}
+    <section
+      id="experience"
+      className="py-24"
+      style={{ background: "var(--bg-secondary)" }}
     >
-      <div className="resume-heading mb-6">
-        <h2
-          className={`text-[36px] relative inline-block ${
-            isDarkMode ? "text-white " : "text-black "
-          } mt-0 font-bold leading-[1.5px]`}
+      <div className="max-w-7xl mx-auto px-4 tablet:px-8 laptop:px-12">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-14"
         >
-          Resume
-          <div className="absolute w-[100px] tablet:w-[200px] h-[3px] bg-gradient-to-r from-red-500 to-pink-500 left-[122%] top-1/2 -translate-y-1/2 rounded-[5px]"></div>
-        </h2>
-      </div>
-      <div className="work mb-4">
-        <div className="row grid grid-cols-1 gap-4 laptop:grid-cols-2">
-          <div className="education ">
-            <div className="title-wraper flex items-center mb-5">
-              <div className="icon mr-2 text-[38px] text-[#ff4d4e]">
+          <h2
+            className="text-3xl tablet:text-4xl laptop:text-5xl font-black mb-4"
+            style={{ color: "var(--text-primary)" }}
+          >
+            Experience &amp;{" "}
+            <span
+              style={{
+                background: "linear-gradient(135deg, #06b6d4, #6366f1)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Education
+            </span>
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 laptop:grid-cols-2 gap-12">
+          {/* Education */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-3 mb-8"
+            >
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-xl"
+                style={{
+                  background: "linear-gradient(135deg, #06b6d4, #6366f1)",
+                  color: "white",
+                }}
+              >
                 <FaGraduationCap />
               </div>
               <h3
-                className={`font-medium text-[24px] ${
-                  isDarkMode ? "text-white " : "text-black "
-                }
-          `}
-                style={{ fontFamily: "poppins, sans-serif" }}
+                className="font-bold text-xl"
+                style={{ color: "var(--text-primary)" }}
               >
                 Education
               </h3>
-            </div>
-            <div className="card-wraper">
-              <div
-                className={`card mb-5 p-5 ${
-                  isDarkMode ? "bg-black " : "bg-[#fff4f4] "
-                }  rounded-xl`}
-              >
-                <span
-                  className={`card-subtitle mb-2 text-sm ${
-                    isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                  } font-normal `}
-                  style={{ fontFamily: "Roboto, sans-serif" }}
-                >
-                  Sep 2020 – Dev 2024
-                </span>
-                <h3
-                  className={` font-medium text-[18px] ${
-                    isDarkMode ? "text-white" : "text-black "
-                  } mb-1`}
-                  style={{ fontFamily: "poppins, sans-serif" }}
-                >
-                  BS: Software Engineering
-                </h3>
-                <p
-                  className={`card-subtitle  text-base ${
-                    isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                  } font-normal `}
-                  style={{ fontFamily: "Roboto, sans-serif" }}
-                >
-                  University of Swat
-                </p>
-              </div>
-            </div>
-            <div className="card-wraper">
-              <div
-                className={`card mb-5 p-5 ${
-                  isDarkMode ? "bg-black " : "bg-[#eef5fa] "
-                }  rounded-xl`}
-              >
-                <span
-                  className={`card-subtitle mb-2 text-sm ${
-                    isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                  } font-normal `}
-                  style={{ fontFamily: "Roboto, sans-serif" }}
-                >
-                  Aug 2017 – July 2019
-                </span>
-                <h3
-                  className={` font-medium text-[18px] ${
-                    isDarkMode ? "text-white" : "text-black "
-                  } mb-1`}
-                  style={{ fontFamily: "poppins, sans-serif" }}
-                >
-                  F.sc: Pre-Engineering
-                </h3>
-                <p
-                  className={`card-subtitle  text-base ${
-                    isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                  } font-normal `}
-                  style={{ fontFamily: "Roboto, sans-serif" }}
-                >
-                  GOVT Degree College Mingora Swat
-                </p>
-              </div>
-            </div>
-            <div className="card-wraper">
-              <div
-                className={`card mb-5 p-5 ${
-                  isDarkMode ? "bg-black " : "bg-[#fff4f4] "
-                }  rounded-xl`}
-              >
-                <span
-                  className={`card-subtitle mb-2 text-sm ${
-                    isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                  } font-normal `}
-                  style={{ fontFamily: "Roboto, sans-serif" }}
-                >
-                  2015-2017
-                </span>
-                <h3
-                  className={` font-medium text-[18px] ${
-                    isDarkMode ? "text-white" : "text-black "
-                  } mb-1`}
-                  style={{ fontFamily: "poppins, sans-serif" }}
-                >
-                  Matric: Science
-                </h3>
-                <p
-                  className={`card-subtitle  text-base ${
-                    isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                  } font-normal `}
-                  style={{ fontFamily: "Roboto, sans-serif" }}
-                >
-                  Al-Azhar Educational Institute Swat
-                </p>
-              </div>
+            </motion.div>
+            <div className="relative">
+              {education.map((item, index) => (
+                <TimelineItem
+                  key={index}
+                  item={item}
+                  index={index}
+                  total={education.length}
+                />
+              ))}
             </div>
           </div>
-          <div className="experiance ">
-            <div className="title-wraper flex items-center mb-5">
-              <div className="icon mr-2 text-[38px] text-[#ff4d4e]">
+
+          {/* Experience */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-3 mb-8"
+            >
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-xl"
+                style={{
+                  background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
+                  color: "white",
+                }}
+              >
                 <IoBriefcaseOutline />
               </div>
               <h3
-                className={`font-medium text-[24px] ${
-                  isDarkMode ? "text-white " : "text-black "
-                }`}
-                style={{ fontFamily: "poppins, sans-serif" }}
+                className="font-bold text-xl"
+                style={{ color: "var(--text-primary)" }}
               >
-                Experiance
+                Experience
               </h3>
-            </div>
-            <div className="card-wraper">
-              <div
-                className={`card mb-5 p-5 ${
-                  isDarkMode ? "bg-black " : "bg-[#fff4f4] "
-                }  rounded-xl`}
-              >
-                <span
-                  className={`card-subtitle mb-2 text-sm ${
-                    isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                  } font-normal `}
-                  style={{ fontFamily: "Roboto, sans-serif" }}
-                >
-                  2025 - 2025
-                </span>
-                <h3
-                  className={` font-medium text-[18px] ${
-                    isDarkMode ? "text-white" : "text-black "
-                  } mb-1`}
-                  style={{ fontFamily: "poppins, sans-serif" }}
-                >
-                  Web Developer
-                </h3>
-                <p
-                  className={`card-subtitle  text-base ${
-                    isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                  } font-normal `}
-                  style={{ fontFamily: "Roboto, sans-serif" }}
-                >
-                  Dev Diligent. Islamabad
-                </p>
-              </div>
-            </div>
-            <div className="card-wraper">
-              <div
-                className={`card mb-5 p-5 ${
-                  isDarkMode ? "bg-black " : "bg-[#eef5fa] "
-                }  rounded-xl`}
-              >
-                <span
-                  className={`card-subtitle mb-2 text-sm ${
-                    isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                  } font-normal `}
-                  style={{ fontFamily: "Roboto, sans-serif" }}
-                >
-                  Nov 2024- March 2025
-                </span>
-                <h3
-                  className={` font-medium text-[18px] ${
-                    isDarkMode ? "text-white" : "text-black "
-                  } mb-1`}
-                  style={{ fontFamily: "poppins, sans-serif" }}
-                >
-                  Web Developer
-                </h3>
-                <p
-                  className={`card-subtitle  text-base ${
-                    isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                  } font-normal `}
-                  style={{ fontFamily: "Roboto, sans-serif" }}
-                >
-                  SoftoSol Pvt Ltd. Islamabad
-                </p>
-              </div>
-            </div>
-            <div className="card-wraper">
-              <div
-                className={`card mb-5 p-5 ${
-                  isDarkMode ? "bg-black " : "bg-[#fff4f4] "
-                }  rounded-xl`}
-              >
-                <span
-                  className={`card-subtitle mb-2 text-sm ${
-                    isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                  } font-normal `}
-                  style={{ fontFamily: "Roboto, sans-serif" }}
-                >
-                  Semester [2021]
-                </span>
-                <h3
-                  className={` font-medium text-[18px] ${
-                    isDarkMode ? "text-white" : "text-black "
-                  } mb-1`}
-                  style={{ fontFamily: "poppins, sans-serif" }}
-                >
-                  Web Developer
-                </h3>
-                <p
-                  className={`card-subtitle  text-base ${
-                    isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                  } font-normal `}
-                  style={{ fontFamily: "Roboto, sans-serif" }}
-                >
-                  Semester project (personal project)
-                </p>
-              </div>
+            </motion.div>
+            <div className="relative">
+              {experience.map((item, index) => (
+                <TimelineItem
+                  key={index}
+                  item={item}
+                  index={index}
+                  total={experience.length}
+                />
+              ))}
             </div>
           </div>
         </div>
       </div>
-      <div className="skills-area mb-4">
-        <div className="row grid grid-cols-1  laptop:grid-cols-2 gap-x-8">
-          <div className="skills">
-            <div className="title">
-              <h3
-                className={` font-medium text-[24px] ${
-                  isDarkMode ? "text-white " : "text-black "
-                } mb-5`}
-                style={{ fontFamily: "poppins, sans-serif" }}
-              >
-                Working Skills
-              </h3>
-            </div>
-            <div className="skill-bar mb-[30px]">
-              <div
-                className={`title-wrap flex justify-between items-center mb-[7px] ${
-                  isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                }  text-base font-normal`}
-              >
-                <div
-                  className="title"
-                  style={{ fontFamily: "poppins, sans-serif" }}
-                >
-                  Web Development
-                </div>
-                <span style={{ fontFamily: "poppins, sans-serif" }}>85%</span>
-              </div>
-              <div className="progress-bar-wraper h-[6px] bg-[#edf2f2] rounded-md">
-                <div className="progress w-[85%] bg-[#ff6464] h-full rounded-md"></div>
-              </div>
-            </div>
-            <div className="skill-bar mb-[30px]">
-              <div
-                className={`title-wrap flex justify-between items-center mb-[7px] ${
-                  isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                }  text-base font-normal`}
-              >
-                <div
-                  className="title"
-                  style={{ fontFamily: "poppins, sans-serif" }}
-                >
-                  Mobile App
-                </div>
-                <span style={{ fontFamily: "poppins, sans-serif" }}>75%</span>
-              </div>
-              <div className="progress-bar-wraper h-[6px] bg-[#edf2f2] rounded-md">
-                <div className="progress w-[75%] bg-[#9272d4] h-full rounded-md"></div>
-              </div>
-            </div>
-            <div className="skill-bar mb-[30px]">
-              <div
-                className={`title-wrap flex justify-between items-center mb-[7px] ${
-                  isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                }  text-base font-normal`}
-              >
-                <div
-                  className="title"
-                  style={{ fontFamily: "poppins, sans-serif" }}
-                >
-                  Figma
-                </div>
-                <span style={{ fontFamily: "poppins, sans-serif" }}>80%</span>
-              </div>
-              <div className="progress-bar-wraper h-[6px] bg-[#edf2f2] rounded-md">
-                <div className="progress w-[80%] bg-[#5185d4] h-full rounded-md"></div>
-              </div>
-            </div>
-            <div className="skill-bar mb-[30px]">
-              <div
-                className={`title-wrap flex justify-between items-center mb-[7px] ${
-                  isDarkMode ? "text-[#7a8383] " : "text-[#44566c] "
-                }  text-base font-normal`}
-              >
-                <div
-                  className="title"
-                  style={{ fontFamily: "poppins, sans-serif" }}
-                >
-                  Python
-                </div>
-                <span style={{ fontFamily: "poppins, sans-serif" }}>60%</span>
-              </div>
-              <div className="progress-bar-wraper h-[6px] bg-[#edf2f2] rounded-md">
-                <div className="progress w-[60%] bg-[#ca56f2] h-full rounded-md"></div>
-              </div>
-            </div>
-          </div>
-          <div className="knowledges">
-            <div className="title">
-              <h3
-                className={` font-medium text-[24px] ${
-                  isDarkMode ? "text-white " : "text-black "
-                } mb-5`}
-                style={{ fontFamily: "poppins, sans-serif" }}
-              >
-                Languages
-              </h3>
-            </div>
-            <div className="tags">
-              <span
-                className={`tag inline-block text-base font-normal ${
-                  isDarkMode ? "bg-[#1d1d1d] text-[#7a8383] " : "bg-[#edf2f2] "
-                } rounded-lg py-2 px-5 mr-4 mb-4`}
-              >
-                C/C++
-              </span>
-              <span
-                className={`tag inline-block text-base font-normal ${
-                  isDarkMode ? "bg-[#1d1d1d] text-[#7a8383] " : "bg-[#edf2f2] "
-                } rounded-lg py-2 px-5 mr-4 mb-4`}
-              >
-                HTML5
-              </span>
-              <span
-                className={`tag inline-block text-base font-normal ${
-                  isDarkMode ? "bg-[#1d1d1d] text-[#7a8383] " : "bg-[#edf2f2] "
-                } rounded-lg py-2 px-5 mr-4 mb-4`}
-              >
-                CSS3
-              </span>
-              <span
-                className={`tag inline-block text-base font-normal ${
-                  isDarkMode ? "bg-[#1d1d1d] text-[#7a8383] " : "bg-[#edf2f2] "
-                } rounded-lg py-2 px-5 mr-4 mb-4`}
-              >
-                Javascript
-              </span>
-
-              <span
-                className={`tag inline-block text-base font-normal ${
-                  isDarkMode ? "bg-[#1d1d1d] text-[#7a8383] " : "bg-[#edf2f2] "
-                } rounded-lg py-2 px-5 mr-4 mb-4`}
-              >
-                Java
-              </span>
-              <span
-                className={`tag inline-block text-base font-normal ${
-                  isDarkMode ? "bg-[#1d1d1d] text-[#7a8383] " : "bg-[#edf2f2] "
-                } rounded-lg py-2 px-5 mr-4 mb-4`}
-              >
-                Python
-              </span>
-              <span
-                className={`tag inline-block text-base font-normal ${
-                  isDarkMode ? "bg-[#1d1d1d] text-[#7a8383] " : "bg-[#edf2f2] "
-                } rounded-lg py-2 px-5 mr-4 mb-4`}
-              >
-                UI Design
-              </span>
-              <span
-                className={`tag inline-block text-base font-normal ${
-                  isDarkMode ? "bg-[#1d1d1d] text-[#7a8383] " : "bg-[#edf2f2] "
-                } rounded-lg py-2 px-5 mr-4 mb-4`}
-              >
-                Reactjs
-              </span>
-              <span
-                className={`tag inline-block text-base font-normal ${
-                  isDarkMode ? "bg-[#1d1d1d] text-[#7a8383] " : "bg-[#edf2f2] "
-                } rounded-lg py-2 px-5 mr-4 mb-4`}
-              >
-                Nodejs
-              </span>
-              <span
-                className={`tag inline-block text-base font-normal ${
-                  isDarkMode ? "bg-[#1d1d1d] text-[#7a8383] " : "bg-[#edf2f2] "
-                } rounded-lg py-2 px-5 mr-4 mb-4`}
-              >
-                Tailwind css
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
   );
 }
 

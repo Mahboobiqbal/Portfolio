@@ -1,9 +1,7 @@
-// eslint-disable-next-line no-unused-vars
-import react from "react";
-import img from "../assets/Mehboob.jpg";
+import React from "react";
+import img from "../assets/profile-pic.png";
 import cv from "../assets/Resume.pdf";
 import { FaFacebookF } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { IoPhonePortraitOutline } from "react-icons/io5";
@@ -13,204 +11,189 @@ import { SlCalender } from "react-icons/sl";
 import { FaDownload } from "react-icons/fa6";
 import { useDarkMode } from "./DarkModeContex";
 import { FaGithub } from "react-icons/fa";
+import { motion } from "framer-motion";
+
 function Profile() {
   const { isDarkMode } = useDarkMode();
 
+  const socialLinks = [
+    {
+      icon: FaFacebookF,
+      href: "https://www.facebook.com/MkBhaii987654321/",
+      color: "#6366f1",
+    },
+    {
+      icon: FaInstagram,
+      href: "https://www.instagram.com/mk__bhaii/",
+      color: "#f43f5e",
+    },
+    {
+      icon: FaLinkedinIn,
+      href: "https://www.linkedin.com/in/mahboobiqbal/",
+      color: "#06b6d4",
+    },
+    {
+      icon: FaGithub,
+      href: "https://github.com/Mahboobiqbal",
+      color: "#8b5cf6",
+    },
+  ];
+
+  const contactInfo = [
+    {
+      icon: IoPhonePortraitOutline,
+      label: "Phone",
+      value: "+92 347 2886228",
+      color: "#f43f5e",
+    },
+    {
+      icon: CiMail,
+      label: "Email",
+      value: "mahboobiqbal774@gmail.com",
+      color: "#06b6d4",
+    },
+    {
+      icon: FaLocationDot,
+      label: "Location",
+      value: "Islamabad, Pakistan",
+      color: "#f59e0b",
+    },
+    {
+      icon: SlCalender,
+      label: "Birthday",
+      value: "March 12th, 2001",
+      color: "#8b5cf6",
+    },
+  ];
+
   return (
-    <div className="Profile w-full laptop:w-1/3 desktop:w-1/3 px-4 mb-4">
-      <div
-        className={`personal-info text-center w-full px-[15px] py-[30px] rounded-[20px] ${
-          isDarkMode ? "bg-black " : "bg-white "
-        } sticky -top-[40px]`}
-      >
-        <div className="img-area w-[240px] h-[240px] rounded-[20px] overflow-hidden laptop:mt-[-100px] mb-[21px] mx-auto">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="glass-card-static p-6 laptop:p-8 laptop:sticky laptop:top-24"
+    >
+      {/* Profile Image */}
+      <div className="flex justify-center mb-6">
+        <motion.div
+          whileHover={{ scale: 1.03 }}
+          className="w-40 h-40 tablet:w-48 tablet:h-48 rounded-2xl overflow-hidden ring-2 ring-offset-2"
+          style={{
+            ringColor: "var(--border-hover)",
+            ringOffsetColor: "var(--bg-card)",
+          }}
+        >
           <img
             src={img}
-            className="w-full h-full object-fit rounded-[20px]"
-            alt="Profile Image"
+            className="w-full h-full object-cover"
+            alt="Mahboob Iqbal"
           />
-        </div>
-        <h4
-          className={`Name laptop:text-xl capitalize font-medium ${
-            isDarkMode ? "text-white " : "text-black "
-          } mb-2`}
+        </motion.div>
+      </div>
+
+      {/* Name & Title */}
+      <div className="text-center mb-6">
+        <h2
+          className="text-xl font-bold mb-2"
+          style={{ color: "var(--text-primary)" }}
         >
           Mahboob Iqbal
-        </h4>
+        </h2>
         <span
-          className={`Bio laptop:text-sm inline-block font-medium capitalize ${
-            isDarkMode ? "bg-[#1d1d1d] text-[#a6a6a6]" : "bg-[#f3f6f6] "
-          }  rounded px-5 py-1 mb-4`}
-          style={{ fontFamily: "poppins, sans-serif" }}
+          className="inline-block text-sm font-medium px-4 py-1.5 rounded-lg"
+          style={{
+            background: "var(--tag-bg)",
+            color: "var(--tag-text)",
+          }}
         >
           Developer | Designer | Freelancer
         </span>
-        <ul className="Social-links flex items-center justify-between w-[260px] px-[7.5px] mb-[30px] mx-auto list-none">
-          <li className="mx-1">
-            <a
-              className={`text-xl text-[#1773ea] w-10 h-10 rounded-lg ${
-                isDarkMode ? "bg-[#1d1d1d] " : "bg-[#f3f6f6] "
-              } flex justify-center items-center leading-10`}
-              href="https://www.facebook.com/MkBhaii987654321/"
-            >
-              <FaFacebookF />
-            </a>
-          </li>
-          
-          <li className="mx-1">
-            <a
-              className={`text-xl text-[#e12a72] w-10 h-10 rounded-lg  ${
-                isDarkMode ? "bg-[#1d1d1d] " : "bg-[#f3f6f6] "
-              } flex justify-center items-center leading-10`}
-              href="https://www.instagram.com/mk__bhaii/"
-            >
-              <FaInstagram />
-            </a>
-          </li>
-          <li className="mx-1">
-            <a
-              className={`text-xl text-[#144679] w-10 h-10 rounded-lg  ${
-                isDarkMode ? "bg-[#1d1d1d] " : "bg-[#f3f6f6] "
-              } flex justify-center items-center leading-10`}
-              href="https://www.linkedin.com/in/mahboobiqbal/"
-            >
-              <FaLinkedinIn />
-            </a>
-          </li>
-          <li className="mx-1">
-            <a
-              className={`text-xl  w-10 h-10 rounded-lg  ${
-                isDarkMode
-                  ? "bg-[#1d1d1d] text-[#9b59b6] "
-                  : "bg-[#f3f6f6] text-black "
-              } flex justify-center items-center leading-10`}
-              href="https://github.com/Mahboobiqbal"
-            >
-              <FaGithub />
-            </a>
-          </li>
-        </ul>
-        <div
-          className={`contact-area px-[15px] laptop:py-[20px]  ${
-            isDarkMode ? "bg-[#1d1d1d] " : "bg-[#f3f6f6] "
-          } rounded-2xl text-left mb-[30px]`}
-        >
-          <div className="flex items-center py-[10px] gap-[10px] border-b">
-            <div
-              className={`Icon flex items-center justify-center text-[#e93b81] text-[25px] w-[44px] h-[44px]   ${
-                isDarkMode ? "bg-black " : "bg-white "
-              } rounded-md text-center shadow-md `}
-            >
-              <IoPhonePortraitOutline />
-            </div>
-            <div className="Text">
-              <span
-                className={`block text-xs leading-[18px] capitalize ${
-                  isDarkMode ? "text-[#7a8383] " : "text-[#44566c]"
-                }  font-normal mb-1`}
-              >
-                Phone
-              </span>
-              <p
-                className={`text-base leading-[24px] font-normal ${
-                  isDarkMode ? "text-white " : "text-black "
-                } capitalize`}
-              >
-                +92 347 2886228
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center py-[10px] gap-[10px] border-b">
-            <div
-              className={` Icon flex items-center justify-center text-[#6ab5b9] ${
-                isDarkMode ? "bg-black " : "bg-white "
-              } text-[25px] w-[44px] h-[44px]   rounded-md text-center shadow-md `}
-            >
-              <CiMail />
-            </div>
-            <div className="Text">
-              <span
-                className={` block text-xs leading-[18px] capitalize ${
-                  isDarkMode ? "text-[#7a8383] " : "text-[#44566c]"
-                }  font-normal mb-1`}
-              >
-                Email
-              </span>
-              <p
-                className={` text-base leading-[24px] font-normal ${
-                  isDarkMode ? "text-white " : "text-black "
-                }`}
-              >
-                mahboobiqbal774@gmail.com
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center py-[10px] gap-[10px] border-b">
-            <div
-              className={` Icon flex items-center justify-center text-[#fd7590] ${
-                isDarkMode ? "bg-black " : "bg-white "
-              } text-[25px] w-[44px] h-[44px]   rounded-md text-center shadow-md `}
-            >
-              <FaLocationDot />
-            </div>
-            <div className="Text">
-              <span
-                className={` block text-xs leading-[18px] capitalize ${
-                  isDarkMode ? "text-[#7a8383] " : "text-[#44566c]"
-                }  font-normal mb-1`}
-              >
-                Location
-              </span>
-              <p
-                className={` text-base leading-[24px] font-normal ${
-                  isDarkMode ? "text-white " : "text-black "
-                } capitalize`}
-              >
-                Islamabad, Pakistan
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center py-[10px] gap-[10px]">
-            <div
-              className={` Icon flex items-center justify-center text-[#c17ceb] ${
-                isDarkMode ? "bg-black " : "bg-white "
-              } text-[25px] w-[44px] h-[44px]   rounded-md text-center shadow-md `}
-            >
-              <SlCalender />
-            </div>
-            <div className="Text">
-              <span
-                className={` block text-xs leading-[18px] capitalize ${
-                  isDarkMode ? "text-[#7a8383] " : "text-[#44566c]"
-                }  font-normal mb-1`}
-              >
-                Birthday
-              </span>
-              <p
-                className={` text-base leading-[24px] font-normal ${
-                  isDarkMode ? "text-white " : "text-black "
-                } capitalize`}
-              >
-                March 12th, 2001
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="cv-download">
-          <a
-            href={cv}
-            download
-            className="text-lg font-normal text-white bg-gradient-to-r from-red-500 to-pink-500 leading-[27px] py-3 px-[30px] rounded-[10px] border-none duration-300 hover:translate-y-[-2px]"
-          >
-            <span className="mr-[5px] inline-block ">
-              <FaDownload />
-            </span>
-            Download CV
-          </a>
-        </div>
       </div>
-    </div>
+
+      {/* Social Links */}
+      <div className="flex justify-center gap-3 mb-6">
+        {socialLinks.map((social, index) => {
+          const Icon = social.icon;
+          return (
+            <motion.a
+              key={index}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-10 h-10 rounded-xl flex items-center justify-center text-lg transition-all duration-300"
+              style={{
+                background: "var(--bg-input)",
+                color: social.color,
+                border: "1px solid var(--border-color)",
+              }}
+            >
+              <Icon />
+            </motion.a>
+          );
+        })}
+      </div>
+
+      {/* Contact Info */}
+      <div
+        className="rounded-2xl p-4 space-y-1 mb-6"
+        style={{
+          background: "var(--bg-input)",
+          border: "1px solid var(--border-color)",
+        }}
+      >
+        {contactInfo.map((item, index) => {
+          const Icon = item.icon;
+          return (
+            <div
+              key={index}
+              className={`flex items-center gap-3 py-3 ${
+                index < contactInfo.length - 1 ? "border-b" : ""
+              }`}
+              style={{ borderColor: "var(--border-color)" }}
+            >
+              <div
+                className="w-10 h-10 rounded-lg flex items-center justify-center text-xl flex-shrink-0"
+                style={{
+                  background: "var(--bg-card)",
+                  color: item.color,
+                  boxShadow: "var(--shadow-sm)",
+                }}
+              >
+                <Icon />
+              </div>
+              <div className="min-w-0">
+                <span
+                  className="block text-xs font-medium uppercase tracking-wider mb-0.5"
+                  style={{ color: "var(--text-muted)" }}
+                >
+                  {item.label}
+                </span>
+                <p
+                  className="text-sm font-medium truncate"
+                  style={{ color: "var(--text-primary)" }}
+                >
+                  {item.value}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Download CV Button */}
+      <motion.a
+        href={cv}
+        download
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="accent-btn w-full justify-center"
+      >
+        <FaDownload className="text-sm" />
+        Download CV
+      </motion.a>
+    </motion.div>
   );
 }
 

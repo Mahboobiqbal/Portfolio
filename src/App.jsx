@@ -1,41 +1,46 @@
 import "./App.css";
-// eslint-disable-next-line no-unused-vars
-import react, { useState } from "react";
-import { useDarkMode } from "./components/DarkModeContex";
-import darkImage from "../src/assets/bg-dark-image.webp";
-import lightImage from "../src/assets/Bg-image.webp";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Heading from "./components/Heading";
-import Profile from "./components/Profile";
-import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
 import About from "./components/About";
-import Resume from "./components/Resume";
-import Contact from "./components/Contact";
+import Skills from "./components/Skills";
 import Works from "./components/Works";
+import Resume from "./components/Resume";
 import Certificates from "./components/Certificates";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 function App() {
-  const [selectedItem, setSelectedItem] = useState("about");
-  const { isDarkMode } = useDarkMode();
-  const backgroundImage = isDarkMode ? darkImage : lightImage;
-
   return (
     <div
-      className={`page-wrapper pt-5 laptop:pt-[50px] pb-[60px] bg-cover bg-center bg-fixed mobile:bg-fixed w-full font-sans font-normal text-body-text text-base leading-base`}
-      style={{ background: `url(${backgroundImage})` }}
+      className="relative overflow-x-hidden"
+      style={{ backgroundColor: "var(--bg-primary)" }}
     >
-      <Heading setSelectedItem={setSelectedItem} />
-      <div className="container px-[15px] mx-auto mobile:px-6 tablet:px-8 latop:px-12 desktop:px-16">
-        <div className="row flex flex-wrap">
-          <Profile />
-          <div className="second w-full laptop:w-2/3 desktop:w-2/3 px-4">
-            <Navbar setSelectedItem={setSelectedItem} />
-            {selectedItem === "about" && <About />}
-            {selectedItem === "resume" && <Resume />}
-            {selectedItem === "contact" && <Contact />}
-            {selectedItem === "work" && <Works />}
-            {selectedItem === "certificate" && <Certificates />}
-          </div>
-        </div>
+      <div className="animated-grid-bg" />
+      <div className="relative z-10">
+        <Heading />
+        <main>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Hero />
+                  <Skills homeView />
+                  <Contact />
+                </>
+              }
+            />
+            <Route path="/about" element={<About />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/projects" element={<Works />} />
+            <Route path="/experience" element={<Resume />} />
+            <Route path="/certificates" element={<Certificates />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+        <Footer />
       </div>
     </div>
   );

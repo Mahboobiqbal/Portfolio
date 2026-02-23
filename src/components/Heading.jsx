@@ -1,185 +1,177 @@
-// eslint-disable-next-line no-unused-vars
-import react, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useDarkMode } from "./DarkModeContex";
 import { FaMoon } from "react-icons/fa";
-import { FiSun } from "react-icons/fi";
-import { CiUser } from "react-icons/ci";
-import { LiaFileSignatureSolid } from "react-icons/lia";
-import { IoBriefcaseOutline } from "react-icons/io5";
-import { PiCertificateLight } from "react-icons/pi";
-import { FaRegAddressBook } from "react-icons/fa";
+import { FiSun, FiMenu, FiX } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
 
-// eslint-disable-next-line react/prop-types
-function Heading({ setSelectedItem }) {
+function Heading() {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
-  const [isActive, setIsActive] = useState(false);
-  const [activeLink, setActiveLink] = useState("about");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
 
-  const toggleLink = (link) => {
-    setActiveLink(link);
-    setSelectedItem(link);
-    setIsActive(false);
-  };
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const toggleMenu = () => {
-    setIsActive(!isActive);
-  };
+  const navLinks = [
+    { label: "Home", to: "/" },
+    { label: "About", to: "/about" },
+    { label: "Skills", to: "/skills" },
+    { label: "Projects", to: "/projects" },
+    { label: "Experience", to: "/experience" },
+    { label: "Certificates", to: "/certificates" },
+    { label: "Contact", to: "/contact" },
+  ];
 
   return (
-    <div className="Heading mb-[30px] laptop:mb-[80px]">
-      <div className="container mx-auto px-4 tablet:max-w-[540px] laptop:max-w-[960px] desktop:max-w-[1140px] tablet:px-6 laptop:px-8 desktop:px-12 ">
-        <div className="header-wraper  p-[20px] rounded-lg tablet:mr-[-40px] tablet:ml-[-50px]">
-          <div className="flex items-center">
-            <div className="w-1/2">
-              <div className="header-logo">
-                <a
-                  className="outline-none no-underline"
-                  href="https://Talhakhan-Developer.github.io/portfolio/"
-                >
-                  <p
-                    className={`align-middle font-sans text-3xl font-medium tracking-[5px] ${
-                      isDarkMode ? "text-white " : "text-black "
-                    }`}
-                  >
-                    Mahboob Iqbal.
-                  </p>
-                </a>
-              </div>
-            </div>
-            <div className="w-1/2">
-              <div className="header-menu-btn text-right flex items-center justify-end mb-0 ">
-                <div
-                  className={`dark-btn w-[50px] h-[50px] text-xl hover:bg-[#fa5252] ${
-                    isDarkMode ? "bg-black text-white" : "bg-white "
-                  } rounded-[50%] mr-[10px] cursor-pointer flex items-center justify-center text-[#44566c] hover:text-white`}
-                  onClick={toggleDarkMode}
-                >
-                  {isDarkMode ? <FiSun /> : <FaMoon />}
-                </div>
-                <div
-                  className="menu-btn tablet:hidden h-10 w-10 bg-gradient-to-r from-red-500 to-pink-500 rounded-full relative inline-flex overflow-hidden items-center justify-center duration-100 cursor-pointer "
-                  onClick={toggleMenu}
-                >
-                  <span
-                    className={` ${
-                      isActive ? "rotate-45 " : "translate-y-[-5px]"
-                    }`}
-                  ></span>
-                  <span
-                    className={` ${isActive ? "translate-x-[30px]" : ""}`}
-                  ></span>
-                  <span
-                    className={` ${
-                      isActive ? "-rotate-45" : "translate-y-[5px]"
-                    }`}
-                  ></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="mobile-menu-wrapper relative">
-          <div
-            className={`mobile-menu absolute top-0 right-0 left-0 ${
-              isActive ? "scale-y-100 " : "scale-y-0"
-            } origin-top z-50 duration-500 `}
+    <nav
+      className="sticky top-0 z-50 w-full transition-all duration-300"
+      style={{
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        backgroundColor: "var(--navbar-bg)",
+        borderBottom: scrolled
+          ? "1px solid var(--border-color)"
+          : "1px solid transparent",
+        boxShadow: scrolled ? "var(--shadow-md)" : "none",
+      }}
+    >
+      <div className="max-w-7xl mx-auto px-4 tablet:px-8 laptop:px-12">
+        <div className="flex items-center justify-between h-16 tablet:h-20">
+          {/* Logo */}
+          <Link
+            to="/"
+            className="font-bold text-xl tablet:text-2xl tracking-tight"
+            style={{ color: "var(--text-primary)", textDecoration: "none" }}
           >
-            <div
-              className={`menu-bar ${
-                isDarkMode ? "bg-black" : "bg-white "
-              } rounded-xl py-5 shadow-md`}
+            Mahboob Iqbal
+            <span
+              style={{
+                background: "var(--accent-gradient)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
             >
-              <nav className="menu-nav">
-                <ul className="list-none">
-                  <li
-                    className="px-10 py-1"
-                    onClick={() => toggleLink("about")}
-                  >
-                    <button
-                      className={`flex cursor-pointer border-none capitalize text-sm font-medium ${
-                        activeLink === "about"
-                          ? "text-[#fa5252] "
-                          : isDarkMode
-                          ? "text-white"
-                          : "text-[#44566c]"
-                      } py-[5px]`}
-                    >
-                      <CiUser className="inline-block mr-[8px] h-[18px] w-[18px] align-top " />
-                      <span className="inline-block ">About</span>
-                    </button>
-                  </li>
-                  <li
-                    className="px-10 py-1"
-                    onClick={() => toggleLink("resume")}
-                  >
-                    <button
-                      className={`flex cursor-pointer border-none capitalize text-sm font-medium ${
-                        activeLink === "resume"
-                          ? "text-[#fa5252] "
-                          : isDarkMode
-                          ? "text-white "
-                          : "text-[#44566c] "
-                      } py-[5px]`}
-                    >
-                      <LiaFileSignatureSolid className="inline-block mr-[8px] h-[18px] w-[18px] align-top " />
-                      <span className="inline-block">Resume</span>
-                    </button>
-                  </li>
-                  <li className="px-10 py-1" onClick={() => toggleLink("work")}>
-                    <button
-                      className={`flex cursor-pointer border-none capitalize text-sm font-medium ${
-                        activeLink === "work"
-                          ? "text-[#fa5252] "
-                          : isDarkMode
-                          ? "text-white "
-                          : "text-[#44566c] "
-                      } py-[5px]`}
-                    >
-                      <IoBriefcaseOutline className="inline-block mr-[8px] h-[18px] w-[18px] align-top " />
-                      <span className="inline-block">Work</span>
-                    </button>
-                  </li>
-                  <li
-                    className="px-10 py-1"
-                    onClick={() => toggleLink("certificate")}
-                  >
-                    <button
-                      className={`flex cursor-pointer border-none capitalize text-sm font-medium ${
-                        activeLink === "certificate"
-                          ? "text-[#fa5252] "
-                          : isDarkMode
-                          ? "text-white "
-                          : "text-[#44566c] "
-                      } py-[5px]`}
-                    >
-                      <PiCertificateLight className="inline-block mr-[8px] h-[18px] w-[18px] align-top " />
-                      <span className="inline-block">Licences </span>
-                    </button>
-                  </li>
-                  <li
-                    className="px-10 py-1"
-                    onClick={() => toggleLink("contact")}
-                  >
-                    <button
-                      className={`flex cursor-pointer border-none capitalize text-sm font-medium ${
-                        activeLink === "contact"
-                          ? "text-[#fa5252] "
-                          : isDarkMode
-                          ? "text-white "
-                          : "text-[#44566c] "
-                      } py-[5px]`}
-                    >
-                      <FaRegAddressBook className="inline-block mr-[8px] h-[18px] w-[18px] align-top " />
-                      <span className="inline-block">Contact</span>
-                    </button>
-                  </li>
-                </ul>
-              </nav>
+              .
+            </span>
+          </Link>
+
+          {/* Desktop Nav Links */}
+          <div className="hidden laptop:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.to}
+                className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"
+                style={{
+                  color:
+                    pathname === link.to ? "#6366f1" : "var(--text-secondary)",
+                  textDecoration: "none",
+                  background:
+                    pathname === link.to
+                      ? "rgba(99,102,241,0.08)"
+                      : "transparent",
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Right Controls */}
+          <div className="flex items-center gap-3">
+            {/* Theme Toggle */}
+            <div
+              className={`theme-toggle ${isDarkMode ? "active" : ""}`}
+              onClick={toggleDarkMode}
+              role="button"
+              aria-label="Toggle dark mode"
+            >
+              <span className="theme-toggle-icon theme-toggle-sun">
+                <FiSun />
+              </span>
+              <span className="theme-toggle-icon theme-toggle-moon">
+                <FaMoon />
+              </span>
             </div>
+
+            {/* Hire Me Button – laptop and above only */}
+            <div className="hidden laptop:block">
+              <Link
+                to="/contact"
+                className="accent-btn text-sm px-5 py-2.5"
+                style={{ textDecoration: "none" }}
+              >
+                Hire Me
+              </Link>
+            </div>
+
+            {/* Mobile hamburger */}
+            <button
+              className="laptop:hidden w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300"
+              style={{
+                background: "var(--bg-card)",
+                border: "1px solid var(--border-color)",
+                color: "var(--text-primary)",
+                cursor: "pointer",
+              }}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+            </button>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="laptop:hidden overflow-hidden border-t"
+            style={{
+              borderColor: "var(--border-color)",
+              backgroundColor: "var(--bg-secondary)",
+            }}
+          >
+            <nav className="px-4 py-4 space-y-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="mobile-nav-link block"
+                  style={{
+                    textDecoration: "none",
+                    color: pathname === link.to ? "#6366f1" : undefined,
+                  }}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="pt-2">
+                <Link
+                  to="/contact"
+                  className="accent-btn w-full justify-center"
+                  onClick={() => setIsMenuOpen(false)}
+                  style={{ textDecoration: "none" }}
+                >
+                  Hire Me
+                </Link>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
   );
 }
 

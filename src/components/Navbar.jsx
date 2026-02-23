@@ -1,117 +1,59 @@
-// eslint-disable-next-line no-unused-vars
-import react, { useState } from "react";
+import React, { useState } from "react";
 import { CiUser } from "react-icons/ci";
 import { LiaFileSignatureSolid } from "react-icons/lia";
 import { IoBriefcaseOutline } from "react-icons/io5";
 import { PiCertificateLight } from "react-icons/pi";
 import { FaRegAddressBook } from "react-icons/fa";
-import { useDarkMode } from "./DarkModeContex";
+import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
 function Navbar({ setSelectedItem }) {
   const [activeLink, setActiveLink] = useState("about");
-  const { isDarkMode } = useDarkMode();
 
   const toggleLink = (link) => {
     setActiveLink(link);
     setSelectedItem(link);
   };
+
+  const navItems = [
+    { id: "about", label: "About", icon: CiUser },
+    { id: "resume", label: "Resume", icon: LiaFileSignatureSolid },
+    { id: "work", label: "Works", icon: IoBriefcaseOutline },
+    { id: "certificate", label: "Licences", icon: PiCertificateLight },
+    { id: "contact", label: "Contact", icon: FaRegAddressBook },
+  ];
+
   return (
-    <div className="hidden tablet:block  navbar text-right mb-10">
-      <div
-        className={`navbar-wraper relative inline-block ${
-          isDarkMode ? "bg-black " : "bg-white "
-        }  rounded-[16px] p-8 laptop:sticky laptop:top-[-45px]`}
-      >
-        <nav>
-          <ul className="list-none flex gap-3 justify-between">
-            <li
-              className={`flex justify-center items-center w-[84px] h-[84px] rounded-xl ${
-                activeLink === "about"
-                  ? "bg-gradient-to-r from-red-500 to-pink-500 text-white duration-300"
-                  : isDarkMode
-                  ? "bg-[#212425] text-white "
-                  : "bg-[#f3f6f6] text-[#44566c] "
-              }   text-center `}
-              onClick={() => toggleLink("about")}
+    <div className="hidden tablet:block">
+      <div className="glass-card-static rounded-2xl p-2 inline-flex gap-2">
+        {navItems.map((item) => {
+          const Icon = item.icon;
+          const isActive = activeLink === item.id;
+          return (
+            <motion.button
+              key={item.id}
+              onClick={() => toggleLink(item.id)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative flex flex-col items-center justify-center w-[80px] h-[76px] rounded-xl font-medium text-sm cursor-pointer border-none outline-none transition-all duration-300"
+              style={{
+                background: isActive ? "var(--accent-gradient)" : "transparent",
+                color: isActive ? "#ffffff" : "var(--text-secondary)",
+              }}
             >
-              <button className="flex justify-center items-center flex-col text-base font-medium ">
-                <span className="mb-3 text-2xl">
-                  <CiUser />
-                </span>
-                <p>About</p>
-              </button>
-            </li>
-            <li
-              className={`flex justify-center items-center w-[84px] h-[84px] rounded-xl ${
-                activeLink === "resume"
-                  ? "bg-gradient-to-r from-red-500 to-pink-500 text-white duration-300"
-                  : isDarkMode
-                  ? "bg-[#212425] text-white "
-                  : "bg-[#f3f6f6] text-[#44566c] "
-              } text-center `}
-              onClick={() => toggleLink("resume")}
-            >
-              <button className="flex justify-center items-center flex-col text-base font-medium ">
-                <span className="mb-3 text-2xl">
-                  <LiaFileSignatureSolid />
-                </span>
-                <p>Resume</p>
-              </button>
-            </li>
-            <li
-              className={`flex justify-center items-center w-[84px] h-[84px] rounded-xl ${
-                activeLink === "work"
-                  ? "bg-gradient-to-r from-red-500 to-pink-500 text-white duration-300"
-                  : isDarkMode
-                  ? "bg-[#212425] text-white "
-                  : "bg-[#f3f6f6] text-[#44566c] "
-              } text-center `}
-              onClick={() => toggleLink("work")}
-            >
-              <button className="flex justify-center items-center flex-col text-base font-medium ">
-                <span className="mb-3 text-2xl">
-                  <IoBriefcaseOutline />
-                </span>
-                <p>Works</p>
-              </button>
-            </li>
-            <li
-              className={`flex justify-center items-center w-[84px] h-[84px] rounded-xl ${
-                activeLink === "certificate"
-                  ? "bg-gradient-to-r from-red-500 to-pink-500 text-white duration-300"
-                  : isDarkMode
-                  ? "bg-[#212425] text-white "
-                  : "bg-[#f3f6f6] text-[#44566c] "
-              } text-center `}
-              onClick={() => toggleLink("certificate")}
-            >
-              <button className="flex justify-center items-center flex-col text-base font-medium ">
-                <span className="mb-3 text-2xl">
-                  <PiCertificateLight />
-                </span>
-                <p>Licences</p>
-              </button>
-            </li>
-            <li
-              className={`flex justify-center items-center w-[84px] h-[84px] rounded-xl ${
-                activeLink === "contact"
-                  ? "bg-gradient-to-r from-red-500 to-pink-500 text-white duration-300"
-                  : isDarkMode
-                  ? "bg-[#212425] text-white "
-                  : "bg-[#f3f6f6] text-[#44566c] "
-              } text-center `}
-              onClick={() => toggleLink("contact")}
-            >
-              <button className="flex justify-center items-center flex-col text-base font-medium ">
-                <span className="mb-3 text-2xl">
-                  <FaRegAddressBook />
-                </span>
-                <p>Contact</p>
-              </button>
-            </li>
-          </ul>
-        </nav>
+              <Icon className="text-xl mb-1.5" />
+              <span className="text-xs font-semibold">{item.label}</span>
+              {isActive && (
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute inset-0 rounded-xl"
+                  style={{ background: "var(--accent-gradient)", zIndex: -1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+            </motion.button>
+          );
+        })}
       </div>
     </div>
   );
